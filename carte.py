@@ -116,7 +116,6 @@ def tracage_moy(x,n):
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
                     p=str(prob)+' :point hors limite,Régler le processus'
                     legen.append(p)
-            st.write(legen)
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.15))
                     #plt.text(0,LCIX-2*prob-1,str(prob)+' :point hors limite,Régler le processus')
             if prob!=0:
@@ -144,7 +143,10 @@ def tracage_moy(x,n):
                         for a in range(ox[0],ox[0]+7): 
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        plt.text(0,LCIX-2*prob-1,str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus')
+                        p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus'
+                        legen.append(p)
+                    plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.15))
+                        #plt.text(0,LCIX-2*prob-1,str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus')
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
