@@ -103,7 +103,7 @@ def tracage_moy(x,n):
         plt.ylabel('Valeur')
         #partie d interpretation liste Xmoy=y
         if w==0:
-            legend=[]
+            legen=[]
             st.header('Carte X bar:')
             st.pyplot(plt)#1 er affichage
             st.header('Analyse de la carte :')
