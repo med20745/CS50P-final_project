@@ -126,6 +126,7 @@ def tracage_moy(x,n):
             prob=0
             indice1=['supérieur']
             indice2=["inférieur"]
+            legen=[]
             for i in range(len(y)):#indice des point superieur ou inferieur a lc
                 if X<y[i]:
                     indice1.append(i)
