@@ -246,8 +246,8 @@ def tracage_R(x,n):
                         for a in range(ox[0],ox[0]+7): 
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                            p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
-                            legen.append(p)
+                        p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
+                        legen.append(p)
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
