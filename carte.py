@@ -113,7 +113,7 @@ def tracage_moy(x,n):
                     plt.scatter(i+1, y[i], s=180, color='red', linewidths=2)
                     prob+=1
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
-                    plt.text(0,min(y)-2*prob-1,str(prob)+' :point hors limite,Régler le processus')
+                    plt.text(0,LCIX-2*prob-1,str(prob)+' :point hors limite,Régler le processus')
             if prob!=0:
                 st.subheader('Détection des points hors limites:')
                 st.pyplot(plt)
@@ -139,7 +139,7 @@ def tracage_moy(x,n):
                         for a in range(ox[0],ox[0]+7): 
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        plt.text(0,min(y)-2*prob-1,str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus')
+                        plt.text(0,LCIX-2*prob-1,str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus')
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
@@ -153,13 +153,13 @@ def tracage_moy(x,n):
                         for a in range(i,i+7):     #de i jusqu a i+7 (exclu)                       #       pour ne repete pas une point
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        plt.text(0,-max(y)/5-2*prob,str(prob)+' : 7 point consécutifs sont en augmentation régulière')
+                        plt.text(0,LCIX-2*prob-1,str(prob)+' : 7 point consécutifs sont en augmentation régulière')
                     elif l==sorted(l,reverse=True):
                         prob+=1
                         for a in range(i,i+7):     #de i jusqu a i+7 (exclu)                       #       pour ne repete pas une point
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        plt.text(0,min(y)-2*prob-1,str(prob)+' : 7 point consécutifs sont en diminution régulière')
+                        plt.text(0,LCIX-2*prob-1,str(prob)+' : 7 point consécutifs sont en diminution régulière')
             if prob!=0:
                 st.subheader('Tendence croissante ou décroissante:')
                 st.pyplot(plt) 
