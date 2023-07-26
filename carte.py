@@ -115,7 +115,8 @@ def tracage_moy(x,n):
                     prob+=1
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
                     p=str(prob)+' :point hors limite,Régler le processus'
-                    legend.append(p)
+                    legen.append(p)
+            st.write(p)
             plt.legend([p], loc='lower left')
                     #plt.text(0,LCIX-2*prob-1,str(prob)+' :point hors limite,Régler le processus')
             if prob!=0:
