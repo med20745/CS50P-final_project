@@ -119,6 +119,7 @@ def tracage_moy(x,n):
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.15))
                     #plt.text(0,LCIX-2*prob-1,str(prob)+' :point hors limite,Régler le processus')
             if prob!=0:
+                plt.tight_layout()
                 st.subheader('Détection des points hors limites:')
                 st.pyplot(plt)
         #7points consécutifs superieurs ou inférieurs a la lc
