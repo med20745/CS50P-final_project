@@ -103,7 +103,6 @@ def tracage_moy(x,n):
         plt.ylabel('Valeur')
         #partie d interpretation liste Xmoy=y
         if w==0:
-            legen=[]
             st.header('Carte X bar:')
             st.pyplot(plt)#1 er affichage
             st.header('Analyse de la carte :')
@@ -111,13 +110,14 @@ def tracage_moy(x,n):
             #point hors limite
             for i in range(len(y)):
                 if (LCSX<y[i] or y[i]<LCIX):
+                    legen=[]
                     plt.scatter(i+1, y[i], s=180, color='red', linewidths=2)
                     prob+=1
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
                     p=str(prob)+' :point hors limite,Régler le processus'
                     legen.append(p)
-            st.write(p)
-            plt.legend([p], loc='lower left')
+            st.write(legen)
+            plt.legend(legen, loc='lower left')
                     #plt.text(0,LCIX-2*prob-1,str(prob)+' :point hors limite,Régler le processus')
             if prob!=0:
                 st.subheader('Détection des points hors limites:')
