@@ -236,6 +236,8 @@ def tracage_R(x,n):
                     indice2.append(i)
             for indice in [indice1,indice2]:
                 b=indice[0]
+                c=indice[1]
+                indice.pop(0)
                 indice.pop(0)
                 (q,r)=divmod(len(indice),7)
                 for h in range(q):
