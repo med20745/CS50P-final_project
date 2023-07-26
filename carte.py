@@ -116,7 +116,7 @@ def tracage_moy(x,n):
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
                     p=str(prob)+' :point hors limite,Régler le processus'
                     legen.append(p)
-            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.15),ncol=2)
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
                     #plt.text(0,LCIX-2*prob-1,str(prob)+' :point hors limite,Régler le processus')
             if prob!=0:
                 st.subheader('Détection des points hors limites:')
