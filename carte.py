@@ -107,10 +107,10 @@ def tracage_moy(x,n):
             st.pyplot(plt)#1 er affichage
             st.header('Analyse de la carte :')
             prob=0
+            legen=[]
             #point hors limite
             for i in range(len(y)):
                 if (LCSX<y[i] or y[i]<LCIX):
-                    legen=[]
                     plt.scatter(i+1, y[i], s=180, color='red', linewidths=2)
                     prob+=1
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
