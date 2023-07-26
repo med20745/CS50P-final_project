@@ -241,17 +241,27 @@ def tracage_R(x,n):
                 indice.pop(0)
                 (q,r)=divmod(len(indice),7)
                 for h in range(q):
-                    for m in range(7):
-                        liste=indice[7*h+m:7*(h+1)+m]
-                        ox=[j for j in range(liste[0],liste[0]+7)]
-                        if liste==ox:
-                            prob+=1            
-                            for a in range(ox[0],ox[0]+7): 
-                                plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
-                            plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                            p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
-                            legen.append(p)
-                            break()
+                    liste=indice[7*h:7*(h+1)]
+                    ox=[j for j in range(liste[0],liste[0]+7)]
+                    if liste==ox:
+                        prob+=1            
+                        for a in range(ox[0],ox[0]+7): 
+                            plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
+                        plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                        p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
+                        legen.append(p)
+                    else:
+                        for m in range(7):
+                            liste=indice[7*h+m:7*(h+1)+m]
+                            ox=[j for j in range(liste[0],liste[0]+7)]
+                            if liste==ox:
+                                prob+=1            
+                                for a in range(ox[0],ox[0]+7): 
+                                    plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
+                                plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                                p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
+                                legen.append(p)
+                            
                         
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
             if prob!=0:
