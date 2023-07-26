@@ -240,7 +240,7 @@ def tracage_R(x,n):
                 indice.pop(0)
                 indice.pop(0)
                 (q,r)=divmod(len(indice),7)
-                for h in range(q):
+                while h <=q:
                     liste=indice[7*h:7*(h+1)]
                     ox=[j for j in range(liste[0],liste[0]+7)]
                     if liste==ox:
@@ -250,9 +250,10 @@ def tracage_R(x,n):
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
                         p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
                         legen.append(p)
+                        h+=1
                     else:
-                        for m in range(1,8):
-                            liste=indice[7*h+m:7*(h+1)+m]
+                        for m in range(7):
+                            liste=indice[7*h+m+1:7*(h+1)+m+1]
                             ox=[j for j in range(liste[0],liste[0]+7)]
                             if liste==ox:
                                 prob+=1            
