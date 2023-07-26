@@ -251,6 +251,7 @@ def tracage_R(x,n):
                             plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
                             p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
                             legen.append(p)
+                            break()
                         
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
             if prob!=0:
