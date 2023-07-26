@@ -254,7 +254,7 @@ def tracage_R(x,n):
                         h+=1
                     else:
                         for m in range(7):
-                            liste=indice[7*h+m+1:7*(h+1)+m+1]
+                            liste=indice[7*h+m:7*(h+1)+m]
                             ox=[j for j in range(liste[0],liste[0]+7)]
                             if liste==ox:
                                 prob+=1            
