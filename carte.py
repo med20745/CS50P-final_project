@@ -235,6 +235,7 @@ def tracage_R(x,n):
                 elif y[i]<R:
                     indice2.append(i)
             for indice in [indice1,indice2]:
+                st.write(indice)
                 b=indice[0]
                 c=indice[1]
                 indice.pop(0)
