@@ -235,23 +235,17 @@ def tracage_R(x,n):
                 elif y[i]<R:
                     indice2.append(i)
             for indice in [indice1,indice2]:
-                st.write(indice)
                 b=indice[0]
-                c=indice[1]
-                indice.pop(0)
                 indice.pop(0)
                 (q,r)=divmod(len(indice),7)
-                for i in range(len(y)):
-                    if i+7<len(y):
-                        liste=indice[i:i+7]
-                        st.write(liste)
-                        ox=[j for j in range(liste[0],liste[0]+7)]
-                        st.write(ox)
-                        if liste==ox:
-                            prob+=1            
-                            for a in range(ox[0],ox[0]+7): 
-                                plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
-                            plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                for h in range(q):
+                    liste=indice[7*h:7*(h+1)]
+                    ox=[j for j in range(liste[0],liste[0]+7)]
+                    if liste==ox:
+                        prob+=1            
+                        for a in range(ox[0],ox[0]+7): 
+                            plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
+                        plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
                             p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
                             legen.append(p)
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
