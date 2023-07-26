@@ -251,7 +251,7 @@ def tracage_R(x,n):
                         p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
                         legen.append(p)
                     else:
-                        for m in range(7):
+                        for m in range(1,8):
                             liste=indice[7*h+m:7*(h+1)+m]
                             ox=[j for j in range(liste[0],liste[0]+7)]
                             if liste==ox:
