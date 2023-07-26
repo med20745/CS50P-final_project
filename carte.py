@@ -241,7 +241,7 @@ def tracage_R(x,n):
                 indice.pop(0)
                 indice.pop(0)
                 (q,r)=divmod(len(indice),7)
-                for h in range(q):
+                for h in range(q+1):
                     liste=indice[7*h:7*(h+1)]
                     st.write(liste)
                     ox=[j for j in range(liste[0],liste[0]+7)]
