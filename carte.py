@@ -146,7 +146,7 @@ def tracage_moy(x,n):
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
                         p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus'
                         legen.append(p)
-                    plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
                         #plt.text(0,LCIX-2*prob-1,str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus')
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
@@ -172,7 +172,7 @@ def tracage_moy(x,n):
                         plt.text(a-3+0.2, y[a-3] + 0.2, prob, fontsize=10, color='red')
                         p=str(prob)+' :sept  point consécutifs sont en diminution régulière'
                         legen.append(p)
-                plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
                         #plt.text(0,LCIX-2*prob-1,str(prob)+' : 7 point consécutifs sont en diminution régulière')
             if prob!=0:
                 st.subheader('Tendence croissante ou décroissante:')
@@ -204,23 +204,28 @@ def tracage_R(x,n):
             st.pyplot(plt)#1 er affichage
             st.header('Analyse de la carte :')
             prob=0
+            legen=[]
             #point hors limite
             for i in range(len(y)):
                 if LCSR<y[i] :
                     plt.scatter(i+1, y[i], s=180, color='red', linewidths=2)
                     prob+=1
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
-                    plt.text(0,-max(y)/5-2*prob,str(prob)+' :point hors limite,La capabilité court terme se détériore. Il faut trouver l origine de cette détérioration et intervenir')
+                    p=str(prob)+' :point hors limite,La capabilité court terme se détériore. Il faut trouver l origine de cette détérioration et intervenir'
+                    legen.append(p)
                 elif y[i]<LCIR:
                     plt.scatter(i+1, y[i], s=180, color='red', linewidths=2)
                     prob+=1
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
-                    plt.text(0,min(y)-2*prob-1,str(prob)+' :point hors limite,La capabilité court terme s améliore, système de mesure est bloqué') 
+                    p=str(prob)+' :point hors limite,La capabilité court terme s améliore, système de mesure est bloqué'
+                    legen.append(p)
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))  
             if prob!=0:
                 st.subheader('Détection des points hors limites:')
                 st.pyplot(plt)
         #7points consécutifs superieurs ou inférieurs a la lc
         elif w==1:
+            legen=[]
             prob=0
             indice1=['supérieur','La capabilité court terme se détériore. Il faut trouver l origine de cette détérioration et intervenir']
             indice2=['inférieur','La capabilité court terme s améliore. Il faut trouver l origine de cette amélioration pour la maintenir']
@@ -243,12 +248,15 @@ def tracage_R(x,n):
                         for a in range(ox[0],ox[0]+7): 
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        plt.text(0,min(y)-2*prob-1,str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c)
+                        p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne'+c
+                        legen.append(p)
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
         elif w==2:#dtection d une sequence croissante ou decroissant
             prob=0
+            legen=[]
             for i in range(len(y)):
                 if i+7<len(y):
                     l=y[i:i+7]
@@ -257,14 +265,16 @@ def tracage_R(x,n):
                         for a in range(i,i+7):     #de i jusqu a i+7 (exclu)                       #       pour ne repete pas une point
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        plt.text(0,min(y)-2*prob-1,str(prob)+' : 7 point consécutifs sont en augmentation régulière, La capabilité court terme se détériore. Il faut trouver l origine decette détérioration et intervenir.')
+                        p=str(prob)+' : sept point consécutifs sont en augmentation régulière, La capabilité court terme se détériore. Il faut trouver l origine decette détérioration et intervenir.'
+                        legen.append(p)
                     elif l==sorted(l,reverse=True):
                         prob+=1
                         for a in range(i,i+7):     #de i jusqu a i+7 (exclu)                       #       pour ne repete pas une point
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        plt.text(0,min(y)-2*prob-1,str(prob)+' : 7 point consécutifs sont en diminution régulière,La capabilité court terme s amé-liore. Il faut trouver l origine decette amélioration pour la maintenir.')
-            
+                        p=str(prob)+' : sept point consécutifs sont en  diminution régulière, La capabilité court terme  s améliore.  Il faut trouver l origine decette amélioration pour la maintenir.'
+                        legen.append(p)
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
             if prob!=0:
                 st.subheader('Tendence croissante ou décroissante:')
                 st.pyplot(plt) 
