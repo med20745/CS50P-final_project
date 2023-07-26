@@ -162,7 +162,7 @@ def tracage_moy(x,n):
                         for a in range(i,i+7):     #de i jusqu a i+7 (exclu)                       #       pour ne repete pas une point
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        p=str(prob)+' :sept  point consécutifs sont en augmentation régulière''
+                        p=str(prob)+' :sept  point consécutifs sont en augmentation régulière'
                         legen.append(p)
                         #plt.text(0,LCIX-2*prob-1,str(prob)+' : 7 point consécutifs sont en augmentation régulière')
                     elif l==sorted(l,reverse=True):
