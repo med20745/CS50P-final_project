@@ -242,9 +242,10 @@ def tracage_R(x,n):
                 (q,r)=divmod(len(indice),7)
                 for h in range(q):
                     liste=indice[7*h:7*(h+1)]
+                    st.write(liste)
                     ox=[j for j in range(liste[0],liste[0]+7)]
+                    st.write(ox)
                     if liste==ox:
-                        st.write(liste)
                         prob+=1            
                         for a in range(ox[0],ox[0]+7): 
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
