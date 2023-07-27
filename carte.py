@@ -239,8 +239,8 @@ def tracage_R(x,n):
         elif w==1:
             legen=[]
             prob=0
-            indice1=['supérieur','La capabilité court terme se détériore .\n Il faut trouver l origine \n de cette détérioration et intervenir']
-            indice2=['inférieur','La capabilité court terme s améliore. \n Il faut trouver l origine \n de cette amélioration pour la maintenir']
+            indice1=['supérieur','La capabilité court terme \n se détériore .\n Il faut trouver l origine \n de cette détérioration et intervenir']
+            indice2=['inférieur','La capabilité court terme \n s améliore. \n Il faut trouver l origine \n de cette amélioration pour la maintenir']
             for i in range(len(y)):#indice des point superieur ou inferieur a lc
                 if R<y[i]:
                     indice1.append(i)
