@@ -285,17 +285,17 @@ def tracage_R(x,n):
             derive=np.gradient(y, x)
             croissante=np.where(derive > 0)[0]
             decroissante==np.where(0 > derive)[0]
-                        for a in croissante:
-                            plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
-                        plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        p=str(prob)+' : sept point consécutifs sont en augmentation régulière, La capabilité court terme se détériore. Il faut trouver l origine decette détérioration et intervenir.'
-                        legen.append(p)
-                        for a in decroissante:
-                        prob+=1                   #       pour ne repete pas une point
-                            plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
-                        plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        p=str(prob)+' : sept point consécutifs sont en  diminution régulière, La capabilité court terme  s améliore.  Il faut trouver l origine decette amélioration pour la maintenir.'
-                        legen.append(p)
+            for a in croissante:
+                plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
+                plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                p=str(prob)+' : sept point consécutifs sont en augmentation régulière, La capabilité court terme se détériore. Il faut trouver l origine decette détérioration et intervenir.'
+                legen.append(p)
+            for a in decroissante:
+                prob+=1                   #       pour ne repete pas une point
+                plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
+                plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                p=str(prob)+' : sept point consécutifs sont en  diminution régulière, La capabilité court terme  s améliore.  Il faut trouver l origine decette amélioration pour la maintenir.'
+                legen.append(p)
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
             if prob!=0:
                 st.subheader('Tendence croissante ou décroissante:')
