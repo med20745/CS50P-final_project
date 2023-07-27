@@ -274,7 +274,7 @@ def tracage_R(x,n):
                         plt.text(a-len(finale[h])/2+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
                         p=str(prob)+' :'+str(len(finale[h]))+'points consécutifs '+ b +' à la moyenne,régler le processus'+c
                         legen.append(p)
-            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.5))
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
