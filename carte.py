@@ -81,7 +81,7 @@ def tracage_moy(x,n):
     LSSX=X+((2/3)*A[n-1]*R)
     LSIX=X-((2/3)*A[n-1]*R)
     y=x[1]#Xmoy
-    for w in range(3):#chaque fois nous allons afficher 1/carte de controle brut apres carte de controle avec analyse
+    for w in range(2):#chaque fois nous allons afficher 1/carte de controle brut apres carte de controle avec analyse
         plt.figure()
         plt.plot([i for i in range(1,len(y)+1)],y,marker='o',color='black')# tracage x y marker pour les points 
         plt.xticks(range(1, len(y) + 1))#axe x que des entiers
@@ -162,32 +162,6 @@ def tracage_moy(x,n):
                         #plt.text(0,LCIX-2*prob-1,str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus')
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
-                st.pyplot(plt) 
-        elif w==2:#dtection d une sequence croissante ou decroissant
-            prob=0
-            legen=[]
-            for i in range(len(y)):
-                if i+6<len(y):
-                    l=y[i:i+7]
-                    if l==sorted(l):
-                        prob+=1
-                        for a in range(i,i+7):     #de i jusqu a i+7 (exclu)                       #       pour ne repete pas une point
-                            plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
-                        plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        p=str(prob)+' :sept  point consécutifs sont en augmentation régulière'
-                        legen.append(p)
-                        #plt.text(0,LCIX-2*prob-1,str(prob)+' : 7 point consécutifs sont en augmentation régulière')
-                    elif l==sorted(l,reverse=True):
-                        prob+=1
-                        for a in range(i,i+7):     #de i jusqu a i+7 (exclu)                       #       pour ne repete pas une point
-                            plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
-                        plt.text(a-3+0.2, y[a-3] + 0.2, prob, fontsize=10, color='red')
-                        p=str(prob)+' :sept  point consécutifs sont en diminution régulière'
-                        legen.append(p)
-            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
-                        #plt.text(0,LCIX-2*prob-1,str(prob)+' : 7 point consécutifs sont en diminution régulière')
-            if prob!=0:
-                st.subheader('Tendence croissante ou décroissante:')
                 st.pyplot(plt) 
     return 0
 
@@ -278,32 +252,6 @@ def tracage_R(x,n):
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
-        elif w==2:#dtection d une sequence croissante ou decroissant
-                    croissante = [i for i in range(1, len(y)) if y[i] > y[i-1]]
-            
-                    # Trouver les indices où la tendance est décroissante
-                    decroissante = [i for i in range(1, len(y)) if y[i] < y[i-1]]
-                    
-                    # Marquer les points correspondants sur le graphique
-                    plt.scatter(np.array(x)[croissante], np.array(y)[croissante], color='green', label='Tendance croissante')
-                    plt.scatter(np.array(x)[decroissante], np.array(y)[decroissante], color='red', label='Tendance décroissante')
-                    plt.legend()
-                    
-                    plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return 0
 
 def interp(x,a):
