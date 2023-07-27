@@ -279,29 +279,27 @@ def tracage_R(x,n):
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
         elif w==2:#dtection d une sequence croissante ou decroissant
-            prob=0
-            legen=[]
-            t=[i for i in range(1,len(y)+1)]
-            derive=np.gradient(y, x)
-            croissante=np.where(derive > 0)[0]
-            decroissante=np.where(0 > derive)[0]
-            plt.scatter(np.array(x)[decroissante], np.array(y)[decroissante], color='red', label='Tendance decroissante')
-                #plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
-                #plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                #p=str(prob)+' : sept point consécutifs sont en augmentation régulière, La capabilité court terme se détériore. Il faut trouver l origine decette détérioration et intervenir.'
-                #legen.append(p)
-
-                #prob+=1         
-            plt.scatter(np.array(x)[croissante], np.array(y)[croissante], color='red', label='Tendance croissante')
-#       pour ne repete pas une point
-                #plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
-                #plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                #p=str(prob)+' : sept point consécutifs sont en  diminution régulière, La capabilité court terme  s améliore.  Il faut trouver l origine decette amélioration pour la maintenir.'
-                #legen.append(p)
-            #plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
+            dy_dx = np.gradient(y, x)
+            
+            # Trouver les indices où la dérivée est positive (tendance croissante)
+            croissante = np.where(dy_dx > 0)[0]
+            
+            # Trouver les indices où la dérivée est négative (tendance décroissante)
+            decroissante = np.where(dy_dx < 0)[0]
+            
+            # Marquer les points correspondants sur le graphique
+            plt.scatter(np.array(x)[croissante], np.array(y)[croissante], color='green', label='Tendance croissante')
+            plt.scatter(np.array(x)[decroissante], np.array(y)[decroissante], color='red', label='Tendance décroissante')
             plt.legend()
-            st.subheader('Tendence croissante ou décroissante:')
-            st.pyplot(plt) 
+            
+            plt.show()
+
+
+
+
+
+
+
     return 0
 
 def interp(x,a):
