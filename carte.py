@@ -284,7 +284,7 @@ def tracage_R(x,n):
             t=[i for i in range(1,len(y)+1)]
             derive=np.gradient(y, x)
             croissante=np.where(derive > 0)[0]
-            decroissante==np.where(0 > derive)[0]
+            decroissante=np.where(0 > derive)[0]
             plt.scatter(np.array(x)[decroissante], np.array(y)[decroissante], color='red', label='Tendance decroissante')
                 #plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                 #plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
