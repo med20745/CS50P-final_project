@@ -298,7 +298,8 @@ def tracage_R(x,n):
                 #plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
                 #p=str(prob)+' : sept point consécutifs sont en  diminution régulière, La capabilité court terme  s améliore.  Il faut trouver l origine decette amélioration pour la maintenir.'
                 #legen.append(p)
-            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
+            #plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
+            plt.legend()
             st.subheader('Tendence croissante ou décroissante:')
             st.pyplot(plt) 
     return 0
