@@ -281,11 +281,14 @@ def tracage_R(x,n):
         elif w==2:#dtection d une sequence croissante ou decroissant
             prob=0
             legen=[]
+            i=0
+            j=o
             for i in range(len(y)):
                 if i+7<len(y):
                     l=y[i:i+7]
                     if l==sorted(l):
                         prob+=1
+                        l=l[i+7:-1]
                         for a in range(i,i+7):     #de i jusqu a i+7 (exclu)                       #       pour ne repete pas une point
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
