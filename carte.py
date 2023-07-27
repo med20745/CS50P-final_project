@@ -281,8 +281,6 @@ def tracage_R(x,n):
         elif w==2:#dtection d une sequence croissante ou decroissant
             prob=0
             legen=[]
-            i=0
-            j=o
             for i in range(len(y)):
                 if i+7<len(y):
                     l=y[i:i+7]
