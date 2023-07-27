@@ -150,7 +150,7 @@ def tracage_moy(x,n):
                         ox=[]                
                         k=indice[i]
                                     
-                        for h in ranege(len(finale)):
+                        for h in range(len(finale)):
                             prob+=1
                             for a in finale[h]:
                                 plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
