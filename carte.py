@@ -121,7 +121,7 @@ def tracage_moy(x,n):
             if prob!=0:
                 st.subheader('Détection des points hors limites:')
                 st.pyplot(plt)
-        #7points consécutifs superieurs ou inférieurs a la lc
+        # n points consécutifs superieurs ou inférieurs a la lc trés bien
         elif w==1:
             prob=0
             indice1=['supérieur']
@@ -231,7 +231,7 @@ def tracage_R(x,n):
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
                     p=str(prob)+' :point hors limite,La capabilité court terme s améliore, système de mesure est bloqué'
                     legen.append(p)
-            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.3))  
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.5))  
             if prob!=0:
                 st.subheader('Détection des points hors limites:')
                 st.pyplot(plt)
