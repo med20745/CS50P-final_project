@@ -149,7 +149,7 @@ def tracage_moy(x,n):
                         finale.append(ox)
                         ox=[]                
                         k=indice[i]
-                                    
+                st.write(finale)     
                 for h in range(len(finale)):
                     prob+=1
                     for a in (finale[h]):
