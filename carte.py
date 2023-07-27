@@ -141,7 +141,7 @@ def tracage_moy(x,n):
                 ox=[]
                 i=0
                 while i <len(indice):
-                    if finale[i]==k:
+                    if indice[i]==k:
                         ox.append(indice[i])
                         k+=1 
                         i+=1 
