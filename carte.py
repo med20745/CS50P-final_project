@@ -223,13 +223,13 @@ def tracage_R(x,n):
                     plt.scatter(i+1, y[i], s=180, color='red', linewidths=2)
                     prob+=1
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
-                    p=str(prob)+' :point hors limite,La capabilité court terme se détériore. Il faut trouver l origine de cette détérioration et intervenir'
+                    p=str(prob)+' :point hors limite,La capabilité court terme se détériore.\n Il faut trouver l origine de cette détérioration et intervenir'
                     legen.append(p)
                 elif y[i]<LCIR:
                     plt.scatter(i+1, y[i], s=180, color='red', linewidths=2)
                     prob+=1
                     plt.text(i+1 + 0.2, y[i] + 0.2, prob, fontsize=10, color='blue')
-                    p=str(prob)+' :point hors limite,La capabilité court terme s améliore, système de mesure est bloqué'
+                    p=str(prob)+' :point hors limite,La capabilité court terme s améliore,\n système de mesure est bloqué'
                     legen.append(p)
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, 0.5))  
             if prob!=0:
@@ -239,8 +239,8 @@ def tracage_R(x,n):
         elif w==1:
             legen=[]
             prob=0
-            indice1=['supérieur','La capabilité court terme se détériore .\n Il faut trouver l origine de cette détérioration et intervenir']
-            indice2=['inférieur','La capabilité court terme s améliore. \nIl faut trouver l origine de cette amélioration pour la maintenir']
+            indice1=['supérieur','La capabilité court terme se détériore .\n Il faut trouver l origine \n de cette détérioration et intervenir']
+            indice2=['inférieur','La capabilité court terme s améliore. \n Il faut trouver l origine \n de cette amélioration pour la maintenir']
             for i in range(len(y)):#indice des point superieur ou inferieur a lc
                 if R<y[i]:
                     indice1.append(i)
