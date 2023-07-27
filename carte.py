@@ -148,7 +148,7 @@ def tracage_moy(x,n):
                     else:
                         finale.append(ox)
                         ox=[]                
-                        k=l[i]
+                        k=finale[i]
                                     
                         for h in ranege(len(finale)):
                             prob+=1
