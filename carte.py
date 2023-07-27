@@ -132,19 +132,30 @@ def tracage_moy(x,n):
                     indice1.append(i)
                 elif y[i]<X:
                     indice2.append(i)
-            for indice in [indice1,indice2]:
+            for indice in [indice1,indice2]:#detecte les points successives supérieur ou inférieure a lc
                 b=indice[0]
                 indice.pop(0)
-                (q,r)=divmod(len(indice),7)
-                for h in range(q):
-                    liste=indice[7*h:7*(h+1)]
-                    ox=[j for j in range(liste[0],liste[0]+7)]
-                    if liste==ox:
-                        prob+=1            
-                        for a in range(ox[0],ox[0]+7): 
-                            plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
-                        plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus'
+                
+                j=indice[0]
+                finale=[]#liste des point sucessive liste de plusieurs listes 
+                ox=[]
+                i=0
+                while i <len(indice):
+                    if l[i]==j:
+                        ox.append(indice[i])
+                        j+=1 
+                        i+=1 
+                    else:
+                        finale.append(ox)
+                        ox=[]                
+                        j=l[i]
+                                    
+                        for h in ranege(len(finale)):
+                            prob+=1
+                            for a in finale[h]:
+                                plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
+                            plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                            p=str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus'
                         legen.append(p)
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
                         #plt.text(0,LCIX-2*prob-1,str(prob)+' :sept points consécutifs '+ b +' à la moyenne,régler le processus')
