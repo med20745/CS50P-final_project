@@ -279,17 +279,17 @@ def tracage_R(x,n):
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
         elif w==2:#dtection d une sequence croissante ou decroissant
-       croissante = [i for i in range(1, len(y)) if y[i] > y[i-1]]
-
-        # Trouver les indices où la tendance est décroissante
-        decroissante = [i for i in range(1, len(y)) if y[i] < y[i-1]]
-        
-        # Marquer les points correspondants sur le graphique
-        plt.scatter(np.array(x)[croissante], np.array(y)[croissante], color='green', label='Tendance croissante')
-        plt.scatter(np.array(x)[decroissante], np.array(y)[decroissante], color='red', label='Tendance décroissante')
-        plt.legend()
-        
-        plt.show()
+                    croissante = [i for i in range(1, len(y)) if y[i] > y[i-1]]
+            
+                    # Trouver les indices où la tendance est décroissante
+                    decroissante = [i for i in range(1, len(y)) if y[i] < y[i-1]]
+                    
+                    # Marquer les points correspondants sur le graphique
+                    plt.scatter(np.array(x)[croissante], np.array(y)[croissante], color='green', label='Tendance croissante')
+                    plt.scatter(np.array(x)[decroissante], np.array(y)[decroissante], color='red', label='Tendance décroissante')
+                    plt.legend()
+                    
+                    plt.show()
 
 
 
