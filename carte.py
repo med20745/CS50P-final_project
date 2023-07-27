@@ -239,8 +239,8 @@ def tracage_R(x,n):
         elif w==1:
             legen=[]
             prob=0
-            indice1=['supérieur','La capabilité court terme se détériore. Il faut trouver l origine de cette détérioration et intervenir']
-            indice2=['inférieur','La capabilité court terme s améliore. Il faut trouver l origine de cette amélioration pour la maintenir']
+            indice1=['supérieur','La capabilité court terme se détériore .\n Il faut trouver l origine de cette détérioration et intervenir']
+            indice2=['inférieur','La capabilité court terme s améliore. \nIl faut trouver l origine de cette amélioration pour la maintenir']
             for i in range(len(y)):#indice des point superieur ou inferieur a lc
                 if R<y[i]:
                     indice1.append(i)
@@ -274,7 +274,7 @@ def tracage_R(x,n):
                         plt.text(a-len(finale[h])/2+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
                         p=str(prob)+' :'+str(len(finale[h]))+'points consécutifs '+ b +' à la moyenne,régler le processus'+c
                         legen.append(p)
-            plt.legend(legen, loc='best',bbox_to_anchor=(0.1, -0.5))
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
