@@ -272,7 +272,7 @@ def tracage_R(x,n):
                         for a in (finale[h]):
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-len(finale[h])/2+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-                        p=str(prob)+' :'+str(len(finale[h]))+'points consécutifs '+ b +' à la moyenne,régler le processus'+c
+                        p=str(prob)+' :'+str(len(finale[h]))+'points consécutifs\n '+ b +' à la moyenne,'+c
                         legen.append(p)
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
             if prob!=0:
