@@ -135,7 +135,6 @@ def tracage_moy(x,n):
             for indice in [indice1,indice2]:#detecte les points successives supérieur ou inférieure a lc
                 b=indice[0]
                 indice.pop(0)
-                st.write(indice)
                 k=indice[0]
                 finale=[]#liste des point sucessive liste de plusieurs listes 
                 ox=[]
@@ -148,8 +147,9 @@ def tracage_moy(x,n):
                     else:
                         finale.append(ox)
                         ox=[]                
-                        k=indice[i]
-                st.write(finale)     
+                        k=indice[i]  
+                if ox:
+                    finale.append(ox)
                 for h in range(len(finale)):
                     prob+=1
                     for a in (finale[h]):
