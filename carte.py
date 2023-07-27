@@ -296,6 +296,7 @@ def tracage_R(x,n):
                         legen.append(p)
                     elif l==sorted(l,reverse=True):
                         prob+=1
+                        l=l[i+7:-1]
                         for a in range(i,i+7):     #de i jusqu a i+7 (exclu)                       #       pour ne repete pas une point
                             plt.scatter(a+1, y[a], s=100, color='orange', linewidths=2)
                         plt.text(a-3+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
