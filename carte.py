@@ -136,19 +136,19 @@ def tracage_moy(x,n):
                 b=indice[0]
                 indice.pop(0)
                 
-                j=indice[0]
+                k=indice[0]
                 finale=[]#liste des point sucessive liste de plusieurs listes 
                 ox=[]
                 i=0
                 while i <len(indice):
-                    if l[i]==j:
+                    if l[i]==k:
                         ox.append(indice[i])
-                        j+=1 
+                        k+=1 
                         i+=1 
                     else:
                         finale.append(ox)
                         ox=[]                
-                        j=l[i]
+                        k=l[i]
                                     
                         for h in ranege(len(finale)):
                             prob+=1
