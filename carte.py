@@ -172,7 +172,7 @@ def tracage_R(x,n):
     LCSR=D4[n-2]*R
     LCIR=D3[n-2]*R
     y=x[2]
-    for w in range(3):
+    for w in range(2):
         plt.figure()
         plt.plot([i for i in range(1,len(y)+1)],y,marker='o',color='black')#marker pour les points 
         plt.axhline(R, color='g', linewidth=1.5)
