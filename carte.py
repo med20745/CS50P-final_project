@@ -190,14 +190,14 @@ def tracage_moy(x,n):
                 prob+=1
                 for b in a:
                     plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
-                plt.text(b-3.5+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                plt.text(b-3.5+0.2, y[b] + 0.2, prob, fontsize=10, color='red')
                 p=str(prob)+ ': 7 points consécutifs sont en augmentation régulière,Régler le processus'
                 legen.append(p)
             for b in deccroissante :
                 prob+=1
                 for b in a:
                     plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
-                plt.text(b-3.5+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                plt.text(b-3.5+0.2, y[b] + 0.2, prob, fontsize=10, color='red')
                 p=str(prob)+': 7 points consécutifs sont en diminuion régulière,Régler le processus'
                 legen.append(p)
             plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
