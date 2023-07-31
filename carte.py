@@ -180,30 +180,30 @@ def tracage_moy(x,n):
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
-    elif w==2:
-        legen=[]
-        l=croidecroi(y)
-        prob=0
-        croissante=l[0]
-        decroissante=l[1]
-        for a in croissante :
-            prob+=1
-            for b in a:
-                plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
-            plt.text(b-3.5+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-            p=str(prob)+ ': 7 points consécutifs sont en augmentation régulière,Régler le processus'
-            legen.append(p)
-         for b in deccroissante :
-            prob+=1
-            for b in a:
-                plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
-            plt.text(b-3.5+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
-            p=str(prob)+': 7 points consécutifs sont en diminuion régulière,Régler le processus'
-            legen.append(p)
-        plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
-        if prob!=0:
-                st.subheader('Tendence croissante ou décroissante')
-                st.pyplot(plt)    
+        elif w==2:
+            legen=[]
+            l=croidecroi(y)
+            prob=0
+            croissante=l[0]
+            decroissante=l[1]
+            for a in croissante :
+                prob+=1
+                for b in a:
+                    plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
+                plt.text(b-3.5+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                p=str(prob)+ ': 7 points consécutifs sont en augmentation régulière,Régler le processus'
+                legen.append(p)
+             for b in deccroissante :
+                prob+=1
+                for b in a:
+                    plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
+                plt.text(b-3.5+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+                p=str(prob)+': 7 points consécutifs sont en diminuion régulière,Régler le processus'
+                legen.append(p)
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
+            if prob!=0:
+                    st.subheader('Tendence croissante ou décroissante')
+                    st.pyplot(plt)    
     return 0
 
 def tracage_R(x,n):
