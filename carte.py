@@ -193,7 +193,7 @@ def tracage_moy(x,n):
                 plt.text(b-3.5+0.2, y[b] + 0.2, prob, fontsize=10, color='red')
                 p=str(prob)+ ': 7 points consécutifs sont en augmentation régulière,Régler le processus'
                 legen.append(p)
-            for b in decroissante :
+            for a in decroissante :
                 prob+=1
                 for b in a:
                     plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
