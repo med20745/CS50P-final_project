@@ -213,7 +213,7 @@ def tracage_R(x,n):
     LCSR=D4[n-2]*R
     LCIR=D3[n-2]*R
     y=x[2]
-    for w in range(2):
+    for w in range(3):
         plt.figure()
         plt.plot([i for i in range(1,len(y)+1)],y,marker='o',color='black')#marker pour les points 
         plt.axhline(R, color='g', linewidth=1.5)
@@ -293,6 +293,30 @@ def tracage_R(x,n):
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
+        elif w==2:
+            legen=[]
+            l=croidecroi(y)
+            prob=0
+            croissante=l[0]
+            decroissante=l[1]
+            for a in croissante :
+                prob+=1
+                for b in a:
+                    plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
+                plt.text(b-3.5+0.2, y[b] + 0.2, prob, fontsize=10, color='red')
+                p=str(prob)+ ': 7 points consécutifs sont en augmentation régulière,La capabilité court terme \n se détériore .\n Il faut trouver l origine \n de cette détérioration et intervenir'
+                legen.append(p)
+            for a in decroissante :
+                prob+=1
+                for b in a:
+                    plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
+                plt.text(b-3.5+0.2, y[b] + 0.2, prob, fontsize=10, color='red')
+                p=str(prob)+': 7 points consécutifs sont en diminuion régulière,La capabilité court terme \n s améliore. \n Il faut trouver l origine \n de cette amélioration pour la maintenir'
+                legen.append(p)
+            plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
+            if prob!=0:
+                    st.subheader('Tendence croissante ou décroissante')
+                    st.pyplot(plt)    
     return 0
 
 def interp(x,a):
