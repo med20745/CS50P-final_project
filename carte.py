@@ -6,6 +6,23 @@ import numpy as np
 #les fonctions
 st.set_page_config(page_title='Carte de  contrôle')
 st.title('Carte de  contrôle')
+def croidecroi(liste):
+    croissante=[]
+    decroissante=[]
+    i=0
+    while i <len(liste):
+        ox=[]
+        ox=liste[i:i+7]
+        if sorted(ox)==ox and len(ox)==7:
+            croissante.append([j for j in range(i,i+7)])  
+            i+=7 
+        elif sorted(ox,reverse=True)==ox and len(ox)==7:
+            decroissante.append([j for j in range(i,i+7)])
+            
+            i+=7     
+        else:
+            i+=1
+    return croissante,decroissante
 def saisie(j,n):#j:nombre de jour n:prelevement chaque jour
     l=[]
     R=[]
@@ -81,7 +98,7 @@ def tracage_moy(x,n):
     LSSX=X+((2/3)*A[n-1]*R)
     LSIX=X-((2/3)*A[n-1]*R)
     y=x[1]#Xmoy
-    for w in range(2):#chaque fois nous allons afficher 1/carte de controle brut apres carte de controle avec analyse
+    for w in range(3):#chaque fois nous allons afficher 1/carte de controle brut apres carte de controle avec analyse
         plt.figure()
         plt.plot([i for i in range(1,len(y)+1)],y,marker='o',color='black')# tracage x y marker pour les points 
         plt.xticks(range(1, len(y) + 1))#axe x que des entiers
@@ -163,6 +180,30 @@ def tracage_moy(x,n):
             if prob!=0:
                 st.subheader('Tendence supérieure ou inférieure')
                 st.pyplot(plt) 
+    elif w==2:
+        legen=[]
+        l=croidecroi(y)
+        prob=0
+        croissante=l[0]
+        decroissante=l[1]
+        for a in croissante :
+            prob+=1
+            for b in a:
+                plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
+            plt.text(b-3.5+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+            p=str(prob)+ ': 7 points consécutifs sont en augmentation régulière,Régler le processus'
+            legen.append(p)
+         for b in deccroissante :
+            prob+=1
+            for b in a:
+                plt.scatter(b+1, y[b], s=100, color='orange', linewidths=2)
+            plt.text(b-3.5+0.2, y[a] + 0.2, prob, fontsize=10, color='red')
+            p=str(prob)+': 7 points consécutifs sont en diminuion régulière,Régler le processus'
+            legen.append(p)
+        plt.legend(legen, loc='best',bbox_to_anchor=(0.5, -0.1))
+        if prob!=0:
+                st.subheader('Tendence croissante ou décroissante')
+                st.pyplot(plt)    
     return 0
 
 def tracage_R(x,n):
