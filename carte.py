@@ -3,89 +3,9 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import sqlite3
-from datetime import datetime
+#les fonctions
 st.set_page_config(page_title='Carte de  contrôle')
 st.title('Carte de  contrôle')
-excel_file = st.file_uploader("Importez un fichier Excel", type=["xlsx"])
-
-
-#les fonctions
-
-def datem(date, df):#fontion retourne dataframe qui repond au date indiqué
-    conn = sqlite3.connect(':memory:')
-    df.to_sql('a', conn, if_exists='replace')
-    column=df.columns.tolist()
-    cursor = conn.cursor()
-    if isinstance(date, tuple):
-        A = date[0].year
-        M = date[0].month
-        D = date[0].day
-        if len(date)!=1:#eviter l' erreur dans l affichage
-            A1 = date[1].year
-            M1 = date[1].month
-            D1 = date[1].day
-            query = f'SELECT * FROM a WHERE (AAAA BETWEEN {A} AND {A1} ) AND (MM BETWEEN {M} AND {M1} ) AND (JJ BETWEEN {D} AND {D1})'
-            cursor.execute(query)
-            resultat = cursor.fetchall()
-            df = pd.DataFrame(resultat)
-            df = df.iloc[:, 1:]
-            try:
-                df.columns=column
-            except ValueError:
-                df.columns=[]
-        
-    conn.close()
-    return df
-
-
-def intervalle_date(df):#donner intervalle de date min et max 
-    A=df["AAAA"][0]
-    M=df["MM"][0]
-    D=df["JJ"][0]
-    datemin_str= f"{A}-{D:02}-{M:02}"
-    x = datetime.strptime(datemin_str,"%Y-%d-%m")
-    nombre_ligne=len(df)
-    A1=df["AAAA"][nombre_ligne-1]
-    M1=df["MM"][nombre_ligne-1]
-    D1=df["JJ"][nombre_ligne-1]
-    datemax_str=f"{A1}-{D1:02}-{M1:02}"#02 pour rendre le jour ou le mois sous la forme 05 06
-    y = datetime.strptime(datemax_str,"%Y-%d-%m")
-    return [x,y]
-
-def saisie(df):#j:nombre de jour n:prelevement chaque jour
-    conn = sqlite3.connect(':memory:')
-    df.to_sql('a', conn, if_exists='replace')
-    nombre_ligne=len(df)
-    if nombre_ligne!=0:
-        query=f'SELECT DISTINCT AAAA,MM,JJ FROM a'
-        cursor.execute(query)
-        resultat = cursor.fetchall()
-        d= pd.DataFrame(resultat)#d :dataframe qui contient toutes les dates distinct
-        liste=[]#liste va contenir des listes de valeur pour chaque prélévement(jour 1[],jour 2[]....)
-        R=[]#liste des étendues
-        Xmoy=[]#liste des moyennes
-        Rmoy=0
-        Xdouble_bar=0
-        for i in range (len(d)):
-            query=f'SELECT VALEUR FROM a WHERE(AAAA = {d[0][i]} ) AND (MM = {d[1][i]} ) AND (JJ = {d[2][i]})'
-            cursor.execute(query)
-            resultat = cursor.fetchall()
-            ox= pd.DataFrame(resultat)
-            temp_ox=ox[0].tolist()
-            liste.append(temp_ox)
-            R.append(max(temp_ox)-min(temp_ox))
-            Xmoy.append(sum(temp_ox)/len(temp_ox))# n le taille d'echantillon
-        if len(R)!=0:
-            Rmoy=sum(R)/len(R)
-        if len(Xmoy)!=0:
-            Xdouble_bar=sum(Xmoy)/len(Xmoy)
-        
-        
-        return liste,Xmoy,R,Rmoy,Xdouble_bar #extraire un tuple sous la forme des listes de : [les valeurs de chaque jour ]
-                                        #liste des XMOY 
-                                        #LISTE DES R        RMOY X DOUBLE BAR
-        
 def croidecroi(liste):
     croissante=[]
     decroissante=[]
@@ -103,18 +23,46 @@ def croidecroi(liste):
         else:
             i+=1
     return croissante,decroissante
-
-
+def saisie(j,n):#j:nombre de jour n:prelevement chaque jour
+    l=[]
+    R=[]
+    Xmoy=[]
+    Rmoy=0
+    Xdouble_bar=0
+    for i in range (1,j+1):
+        ox=[]
+        s=0
+        for k in range(1,n+1):
+            x=st.text_input(f'donner la valeur du {k}  prelevement du {i} échantillon:')
+            try:
+                x=float(x)
+            except ValueError:
+                x=0
+            ox.append(x)
+            s+=x
+        if len(ox)!=0:
+            R.append(max(ox)-min(ox))
+        if n!=0:
+            Xmoy.append(s/n)
+        l.append(ox)
+    if len(R)!=0:
+        Rmoy=sum(R)/len(R)
+    if len(Xmoy)!=0:
+        Xdouble_bar=sum(Xmoy)/len(Xmoy)
+    
+    return l,Xmoy,R,Rmoy,Xdouble_bar #extraire une liste sous la forme des listes de : [les valeurs de chaque jour ]
+                                        #liste des XMOY 
+                                        #LISTE DES R        RMOY X DOUBLE BAR
 def tolerance():
     col1, col2 = st.columns(2)
-    Lmax = col1.text_input('Donnez la limite supérieure du paramétre')
+    Lmax = col1.text_input('Donnez la limite supérieure')
     #Lmax=st.text_input('donnez la limite supérieure')
     try:
         Lmax=float(Lmax)
     except ValueError:
         Lmax=0
     #Lmin=st.text_input('donnez la limite inférieure')   
-    Lmin = col2.text_input('Donnez la limite inférieure du paramétre')   
+    Lmin = col2.text_input('Donnez la limite inférieure')   
     try:
         Lmin=float(Lmin)
     except ValueError:
@@ -123,7 +71,7 @@ def tolerance():
                                                                                                                    
 def table(x):#x est le tuple l output de la fonction saisie
     df=pd.DataFrame()
-    if x is not None:
+    if x[4]!=0:
         for i in range (len(x[0])):
             df1=pd.DataFrame(x[0][i])
             df2=pd.DataFrame([x[1][i]])
@@ -410,29 +358,19 @@ def capabilite(Lmax,Lmin,x):#cp,pp,cpk,ppk
     st.write(df)
     return 0
 #programme principale
-if excel_file is not  None:
-    df = pd.read_excel(excel_file)
-    [x,y]=intervalle_date(df)
-    intervalle = st.date_input('selectionnez l intervalle de date :',[x,y], min_value=x,max_value=y)
-    df=datem(intervalle,df)
-    st.write(df)
-    conn = sqlite3.connect(':memory:')
-    # Enregistrement du DataFrame dans la table 'a' de la base de données
-    df.to_sql('a', conn, if_exists='replace')
-    cursor = conn.cursor()
-    a=saisie(df)
-    l=tolerance()
-    Lmax=l[0]
-    Lmin=l[1]
-    df=table(a)
-    if a is not None:
-        j=len(a[0])#nombre de prélevement (nombre de jour)
-        n=len(a[0][0])#taille d'echantillon
-        st.write(df)
-        if a[4]!=0 and n>=2:
-            tracage_moy(a,n)
-            tracage_R(a,n)
-            capabilite(Lmax,Lmin,a)
+col1,col2=st.columns(2)
+j = col1.number_input('Donnez le nombre d échantillon', min_value=0, step=1)
+n = col2.number_input('Donnez le taille  échantillon',min_value=0, step=1)
+l=tolerance()
+Lmax=l[0]
+Lmin=l[1]
+x=saisie(int(j),int(n))
+df=table(x)
+st.write(df)
+if x[4]!=0:
+    tracage_moy(x,n)
+    tracage_R(x,n)
+    capabilite(Lmax,Lmin,x)
 
 
             
