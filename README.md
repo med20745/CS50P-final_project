@@ -1,5 +1,5 @@
 # Carte de Contrôle Streamlit App
-
+Video Demo: https://www.youtube.com/watch?v=h8924GEuNCU
 ## Description
 
 The "Carte de Contrôle" Streamlit app is designed for statistical process control. It allows users to input data for quality control measurements, visualize control charts, and analyze the process capability. The app supports both X-bar (average) and R (range) charts.
